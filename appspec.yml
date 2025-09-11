@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /src/kafka-consumer
+
+file_exists_behavior: OVERWRITE
+
+permissions:
+  - object: /src/kafka-consumer
+    owner: kafka
+    group: kafka
+    mode: 755
+
+hooks:
+  AfterInstall:
+    - location: deploy/after_install.sh.sh
+      timeout: 120
+      runas: kafka
